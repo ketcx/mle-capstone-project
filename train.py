@@ -19,7 +19,7 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 run = Run.get_context()
 client = ExplanationClient.from_run(run)
 
-ds = TabularDatasetFactory.from_delimited_files("https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv", validate=True, include_path=False, infer_column_types=True, set_column_types=None, separator=',', header=True, partition_format=None, support_multi_line=False, empty_as_string=False)
+ds = TabularDatasetFactory.from_delimited_files("https://raw.githubusercontent.com/ketcx/ml-ops-exercise/master/data/hotel_bookings_clean.csv", validate=True, include_path=False, infer_column_types=True, set_column_types=None, separator=',', header=True, partition_format=None, support_multi_line=False, empty_as_string=False) 
 
 def transform(dataframe):
     
@@ -32,36 +32,23 @@ def transform(dataframe):
     return dataframe[categorical_features].apply(lambda x: le.fit_transform(x))
 
 def clean_data(data):
+    """
+    Work with clean dataset.
+    """
+    df = data.to_pandas_dataframe().dropna()
+    df_t = df.copy()
+    df_t = transform(df_t)
+    df[['hotel', 'meal', 'country', 'market_segment', 'distribution_channel', 'deposit_type', 'customer_type']] = df_t[['hotel', 'meal', 'country', 'market_segment', 'distribution_channel', 'deposit_type', 'customer_type']]
 
-    df = data.copy()
-    df[['agent', 'company']] = df[['agent', 'company']].fillna(0.0)
-    df['country'].fillna(data.country.mode().to_string(), inplace=True)
-    df['children'].fillna(round(data.children.mean()), inplace=True)
-    df = df.drop(df[(df.adults+df.babies+df.children)==0].index)
-    df[['children', 'company', 'agent']] = df[['children', 'company', 'agent']].astype('int64')
 
-    df_cleaned = df.copy()
-    df_cleaned['room'] = 0
-    df_cleaned.loc[df_cleaned['reserved_room_type'] == df_cleaned['assigned_room_type'] , 'room'] = 1
-    df_cleaned['net_cancelled'] = 0
-    df_cleaned.loc[df_cleaned['previous_cancellations'] > df_cleaned['previous_bookings_not_canceled'] , 'net_cancelled'] = 1
-    df_cleaned = df_cleaned.drop(['reservation_status','arrival_date_year','arrival_date_week_number','arrival_date_day_of_month',
-                                'arrival_date_month','assigned_room_type','reserved_room_type','reservation_status_date',
-                                'previous_cancellations','previous_bookings_not_canceled'],axis=1)
-    
-    df_cleaned_t = df_cleaned.copy()
-    df_cleaned_t = transform(df_cleaned_t)
-    df_cleaned[['hotel', 'meal', 'country', 'market_segment', 'distribution_channel', 'deposit_type', 'customer_type']] = df_cleaned_t[['hotel', 'meal', 'country', 'market_segment', 'distribution_channel', 'deposit_type', 'customer_type']]
-
-    x = df_cleaned.drop(['is_canceled'], axis=1) 
-    y = df_cleaned['is_canceled']
+    x = df.drop(['is_canceled'], axis=1) 
+    y = df['is_canceled']
     
     return x, y
 
 x, y = clean_data(ds)
 
 feature_names = list(x.columns)
-feature_names = np.append(feature_names, ["is_canceled"])
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.20, random_state=42)
 
