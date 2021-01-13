@@ -171,8 +171,27 @@ After running our experiment with four interactions, our best result was:
   <img src="https://github.com/ketcx/mle-capstone-project/blob/master/data/img015.png" width=600>
 </p>
 
+### Comparing Models
 
-### Model Deployment
+Comparing the model with the tuning parameters with HyperDrive with AutoML the results are:
+
+- For the best AutoML model:
+
+  - 93% of the "no" were classified correctly.
+  - 7% of the "no" were classified as "yes" incorrectly.
+  - 78% of the "yes" were classified correctly.
+  - 22% of the "yes" were classified as "no" incorrectly.
+
+- For the best model with hyperparameters optimized with HyperDrive:
+
+  - 92% of the "no" were classified correctly.
+  - 8% of the "no" were classified as "yes" incorrectly.
+  - 58% of the "yes" were classified correctly.
+  - 42% of the "yes" were classified as "no" incorrectly.
+
+<p>Observing the results we can conclude that the best model of applying AutoML predicts with better precision the reservations that can be canceled, 78% against 58% for the best model with hyperparameters optimized with HyperDrive
+### Model Deployment</p>
+
 *TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
 
 Comparing the precision results the model that you select to deploy the best AutoML model, (although also deploy to test the option of "No code deployment").
