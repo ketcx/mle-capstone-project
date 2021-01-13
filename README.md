@@ -36,14 +36,21 @@
 ## Dataset
 
 <p>
-For this project we are going to use a dataset obtained from Kaggle that collects information on reservations from two hotels in Portugal. [Link](https://www.kaggle.com/jessemostipak/hotel-booking-demand)
+For this project we are going to use a dataset obtained from Kaggle that collects information on reservations from two hotels in Portugal. 
 </p>
+
+[Link](https://www.kaggle.com/jessemostipak/hotel-booking-demand)
+
+
 <p>
 This dataset was recompiled with the objective of developing prediction models to classify the probability of cancellation of a hotel reservation. However, due to the characteristics of the variables included in these data sets, their use goes beyond this cancellation prediction problem.
 </p>
 <p>
-The data is originally from the article Hotel Booking Demand Datasets, written by Nuno Antonio, Ana Almeida, and Luis Nunes for Data in Brief, Volume 22, February 2019. [Link](https://www.sciencedirect.com/science/article/pii/S2352340918315191)
+The data is originally from the article Hotel Booking Demand Datasets, written by Nuno Antonio, Ana Almeida, and Luis Nunes for Data in Brief, Volume 22, February 2019. 
 <p>
+
+[Link](https://www.sciencedirect.com/science/article/pii/S2352340918315191)
+
 </p>
 <p>
 The data was downloaded and cleaned by Thomas Mock and Antoine Bichat for TidyTuesday during the week of February 11th, 2020.
