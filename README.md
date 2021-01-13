@@ -189,10 +189,9 @@ Comparing the model with the tuning parameters with HyperDrive with AutoML the r
   - 58% of the "yes" were classified correctly.
   - 42% of the "yes" were classified as "no" incorrectly.
 
-<p>Observing the results we can conclude that the best model of applying AutoML predicts with better precision the reservations that can be canceled, 78% against 58% for the best model with hyperparameters optimized with HyperDrive
-### Model Deployment</p>
+<p>Observing the results we can conclude that the best model of applying AutoML predicts with better precision the reservations that can be canceled, 78% against 58% for the best model with hyperparameters optimized with HyperDrive.</p>
 
-*TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
+### Model Deployment
 
 Comparing the precision results the model that you select to deploy the best AutoML model, (although also deploy to test the option of "No code deployment").
 
