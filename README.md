@@ -78,7 +78,7 @@ After that I added the clean data set through the Azure Machine Learning interfa
 For the AutoML settings and configuration, I chose as a metric to evaluate the precision, I put a timeout of 30 minutes in the experiment, I enabled the early stop policy, I limited the time of each interaction to 15 minutes and I put a maximum of 5 concurrent nodes .
 
 ### Results
-*TODO*: What are the results you got with your automated ML model? What were the parameters of the model? How could you have improved it?
+
 <p>
 The best general model was the VotingEnsemble, which is an ensemble machine learning model that combines the predictions of all the previous models, but taking this the best model was the MaxAbsScaler, LightGBM with an accuracy of 87% and a duration of 01:26 seconds of training. , while the worst model was the StandardScalerWrapper, LightGBM with 62% accuracy and a duration of 01:25, which indicates that with a similar training time the MaxAbsScaler, LightGBM achieved an accuracy of 25% better using the same model but a different data processing technique, MaxAbsScaler instead of StandardScalerWrapper.
 </p>
